@@ -1,12 +1,16 @@
 package com.fabiosantos.jogopedrapapeltesoura;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,4 +25,41 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
     }
+
+    public void selecionarPedra(View view){
+        verificarGanhador("pedra");
+    }
+
+    public void selecionarPapel(View view){
+        verificarGanhador("papel");
+    }
+
+    public void selecionarTesoura(View view){
+        verificarGanhador("tesoura");
+    }
+
+    private String gerarEscolhaAleatoriaApp() {
+
+        String[] opcoes = {"pedra", "papel", "tesoura"};
+        int numeroAleatorio = new Random().nextInt(3);
+        ImageView imagemApp = findViewById(R.id.image_app);
+
+        String escolhaApp = opcoes[numeroAleatorio];
+
+        if(escolhaApp == "pedra"){
+            imagemApp.setImageResource(R.drawable.pedra);
+        } else if (escolhaApp == "papel") {
+            imagemApp.setImageResource(R.drawable.papel);
+        } else{
+            imagemApp.setImageResource(R.drawable.tesoura);
+        }
+
+        return escolhaApp;
+    }
+
+    private void verificarGanhador(String escolhausuario){
+        String escolhaApp = gerarEscolhaAleatoriaApp();
+    }
+
+
 }
