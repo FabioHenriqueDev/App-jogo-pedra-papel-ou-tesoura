@@ -3,6 +3,7 @@ package com.fabiosantos.jogopedrapapeltesoura;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void selecionarPapel(View view){
         verificarGanhador("papel");
+
+
     }
 
     public void selecionarTesoura(View view){
@@ -59,6 +62,23 @@ public class MainActivity extends AppCompatActivity {
 
     private void verificarGanhador(String escolhausuario){
         String escolhaApp = gerarEscolhaAleatoriaApp();
+        TextView textoResultado = findViewById(R.id.text_resultado);
+
+        if(
+                (escolhaApp == "pedra" && escolhausuario == "tesoura") ||
+                (escolhaApp == "papel" && escolhausuario == "pedra") ||
+                (escolhaApp == "tesoura" && escolhausuario == "papel")
+        ){
+            textoResultado.setText("Você perdeu 😔");
+        } else if (
+                (escolhausuario == "pedra" && escolhaApp == "tesoura") ||
+                (escolhausuario == "papel" && escolhaApp == "pedra") ||
+                (escolhausuario == "tesoura" && escolhaApp == "papel")
+        ){
+            textoResultado.setText("Voce ganhou! 🥳");
+        } else{
+            textoResultado.setText("Empate 🙄");
+        }
     }
 
 
